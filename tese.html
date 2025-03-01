@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand Horizon Convention Center</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a192f, #172a45);
+            color: #fff;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hall-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            animation: slideUp 1s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hall-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.2),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        .image-container {
+            flex: 0 0 450px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            z-index: 1;
+        }
+
+        .image-container:hover {
+            transform: scale(1.03);
+        }
+
+        .hall-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .content {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .hall-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hall-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: #64ffda;
+            animation: lineExpand 1.5s ease;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .spec-card {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .spec-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .spec-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #64ffda;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-label {
+            color: #8892b0;
+            font-size: 0.9rem;
+        }
+
+        .description {
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #ccd6f6;
+        }
+
+        .amenities {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .amenity-tag {
+            background: rgba(100, 255, 218, 0.1);
+            color: #64ffda;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .amenity-tag:hover {
+            background: rgba(100, 255, 218, 0.2);
+            transform: scale(1.05);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #64ffda, #00b4d8);
+            color: #0a192f;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shimmer {
+            100% { left: 100%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes lineExpand {
+            from { width: 0; }
+            to { width: 60px; }
+        }
+
+        @media (max-width: 768px) {
+            .hall-card {
+                flex-direction: column;
+            }
+            
+            .image-container {
+                flex: none;
+                width: 100%;
+            }
+            
+            .hall-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hall-card">
+            <div class="image-container">
+                <img src="https://source.unsplash.com/random/800x600?conference-hall" alt="Conference Hall" class="hall-image">
+            </div>
+            <div class="content">
+                <h1 class="hall-title">Grand Horizon Convention Center</h1>
+                
+                <div class="specs-grid">
+                    <div class="spec-card">
+                        <div class="spec-value">1200</div>
+                        <div class="spec-label">Seating Capacity</div>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-value">2500m²</div>
+                        <div class="spec-label">Total Area</div>
+                    </div>
+                    <div class="spec-card">
+                        <div class="spec-value">12</div>
+                        <div class="spec-label">Meeting Rooms</div>
+                    </div>
+                </div>
+
+                <p class="description">
+                    Our state-of-the-art convention center features cutting-edge technology, 
+                    flexible event spaces, and premium amenities. With 1200 theater-style seats 
+                    and 2500 square meters of configurable space, we host everything from 
+                    international conferences to corporate galas.
+                </p>
+
+                <div class="amenities">
+                    <span class="amenity-tag"><i class="fas fa-wifi"></i> High-Speed WiFi</span>
+                    <span class="amenity-tag"><i class="fas fa-projector"></i> 4K Projection</span>
+                    <span class="amenity-tag"><i class="fas fa-utensils"></i> Catering Service</span>
+                    <span class="amenity-tag"><i class="fas fa-parking"></i> 500+ Parking</span>
+                </div>
+
+                <div class="button-group">
+                    <button class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i>
+                        Book Now
+                    </button>
+                    <button class="btn btn-secondary">
+                        <i class="fas fa-virtual-reality"></i>
+                        3D Tour
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
